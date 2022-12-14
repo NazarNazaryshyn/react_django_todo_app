@@ -29,7 +29,7 @@ export function App(){
                 "Authorization": "Bearer "+localStorage.getItem("token")
             }
         }
-        fetch(`http://127.0.0.1:8000/api/user_tasks/?id=${localStorage.getItem("currentUserId")}`, requestOptions)
+        fetch(`https://todo-reactdjango-app.herokuapp.com/api/user_tasks/?id=${localStorage.getItem("currentUserId")}`, requestOptions)
             .then(response => response.json())
             .then(data => setItems(data))
     }
@@ -44,7 +44,7 @@ export function App(){
                 password2: password2RegisterRef.current.value
             })
         }
-        fetch("http://127.0.0.1:8000/api/register/", requestOptions)
+        fetch("https://todo-reactdjango-app.herokuapp.com/api/register/", requestOptions)
     }
 
     function login(){
@@ -56,7 +56,7 @@ export function App(){
                 password: passwordLoginRef.current.value
             })
         }
-        fetch("http://127.0.0.1:8000/api/custom_token/obtain/", requestOptions)
+        fetch("https://todo-reactdjango-app.herokuapp.com/api/custom_token/obtain/", requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data["detail"]){
@@ -84,7 +84,7 @@ export function App(){
                 owner: localStorage.getItem("currentUserId")
             })
         }
-        fetch("http://127.0.0.1:8000/api/task/", requestOptions)
+        fetch("https://todo-reactdjango-app.herokuapp.com/api/task/", requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data["detail"]){
@@ -104,7 +104,7 @@ export function App(){
             }
         }
         setItems(items.filter(item => item.id !== id))
-        fetch(`http://127.0.0.1:8000/api/task/${id}/`, requestOptions)
+        fetch(`https://todo-reactdjango-app.herokuapp.com/api/task/${id}/`, requestOptions)
             .then(response => {
                 let newTasks = [...items].filter(item => item.pk !== id)
                 setItems(newTasks)
@@ -120,7 +120,7 @@ export function App(){
                 "Authorization": "Bearer "+localStorage.getItem("token")
             }
         }
-        fetch(`http://127.0.0.1:8000/api/get_completed/?id=${localStorage.getItem("currentUserId")}`, requestOptions)
+        fetch(`https://todo-reactdjango-app.herokuapp.com/api/get_completed/?id=${localStorage.getItem("currentUserId")}`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 setItems(data)
@@ -136,7 +136,7 @@ export function App(){
                 "Authorization": "Bearer "+localStorage.getItem("token")
             }
         }
-        fetch(`http://127.0.0.1:8000/api/missed_deadline/?id=${localStorage.getItem("currentUserId")}`, requestOptions)
+        fetch(`https://todo-reactdjango-app.herokuapp.com/api/missed_deadline/?id=${localStorage.getItem("currentUserId")}`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(items)
@@ -172,7 +172,7 @@ export function App(){
             }
         })
 
-        fetch(`http://127.0.0.1:8000/api/change_is_done/?id=${id}&checked=${boolean}`, requestOptions)
+        fetch(`https://todo-reactdjango-app.herokuapp.com/api/change_is_done/?id=${id}&checked=${boolean}`, requestOptions)
     }
 
     function changeTitle(id){
@@ -183,7 +183,7 @@ export function App(){
                 "Authorization": "Bearer "+token
             }
         }
-        fetch(`http://127.0.0.1:8000/api/change_title/?task_id=${id}&new_title=${newTitle}`, requestOptions)
+        fetch(`https://todo-reactdjango-app.herokuapp.com/api/change_title/?task_id=${id}&new_title=${newTitle}`, requestOptions)
         items.find(item => {
             if (item.pk === id){
                 item.title = newTitle
