@@ -32,5 +32,6 @@
     "react-bootstrap": "^2.6.0",
     "react-router": "^6.4.3",
     "react-router-dom": "^6.4.3"
-  }
+  },
+  "proxy":"https://todo-reactdjango-app.herokuapp.com/"
 }
