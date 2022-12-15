@@ -14,7 +14,15 @@ SECRET_KEY = 'django-insecure-xqz75%pr-0zvs_u+a4wtctdo*7!7o50=+xk+zpc@kw9n3d#hy(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["todo-reactdjango-app.herokuapp.com"]
+ALLOWED_HOSTS = [
+    "*"
+    # "todo-reactdjango-app.herokuapp.com",
+    # "127.0.0.1"
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://todo-reactdjango-app.herokuapp.com"
+]
 
 
 # Application definition
@@ -33,24 +41,27 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware"
 ]
 
 ROOT_URLCONF = 'django_api.urls'
 
-CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000',
-     "http://localhost:8000",
 
-]
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = [
+#      'http://localhost:3000',
+#      "http://localhost:8000",
+#      "https://todo-reactdjango-app.herokuapp.com"
+#
+# ]
 # CORS_ORIGIN_ALLOW = True
 # CORS_ORIGIN_ALLOW_ALL = True
 
