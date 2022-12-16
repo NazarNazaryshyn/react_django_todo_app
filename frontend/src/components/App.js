@@ -29,7 +29,7 @@ export function App(){
                 "Authorization": "Bearer "+localStorage.getItem("token")
             }
         }
-        fetch(`https://todo-reactdjango-app.herokuapp.com/api/user_tasks/?id=${localStorage.getItem("currentUserId")}`, requestOptions)
+        fetch(`/api/user_tasks/?id=${localStorage.getItem("currentUserId")}`, requestOptions)
             .then(response => response.json())
             .then(data => setItems(data))
     }
@@ -56,7 +56,7 @@ export function App(){
                 password: passwordLoginRef.current.value
             })
         }
-        fetch("https://todo-reactdjango-app.herokuapdadap.com/api/custom_token/obtain/", requestOptions)
+        fetch("/api/custom_token/obtain/", requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data["detail"]){
