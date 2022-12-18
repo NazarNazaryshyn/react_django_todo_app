@@ -50,7 +50,10 @@ export function App(){
     function login(){
         const requestOptions = {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "https://todo-reactdjango-app.herokuapp.com"
+            },
             body: JSON.stringify({
                 username: usernameLoginRef.current.value,
                 password: passwordLoginRef.current.value
