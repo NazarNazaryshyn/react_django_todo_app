@@ -33,10 +33,5 @@
     "react-router": "^6.4.3",
     "react-router-dom": "^6.4.3"
   },
-  "proxy": {
-      "/api" : {
-          "target" : "https://todo-reactdjango-app.herokuapp.com",
-          "changeOrigin" : true
-        },
-    }
+  "proxy": "https://todo-reactdjango-app.herokuapp.com"
 }
