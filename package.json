@@ -19,6 +19,5 @@
   "engines":{
     "node":"18.9.0",
     "npm": "8.19.1"
-  },
-  "proxy": "https://todo-reactdjango-app.herokuapp.com"
+  }
 }
