@@ -7,6 +7,11 @@ module.exports = {
     path: path.resolve(__dirname, "./static/frontend"),
     filename: "[name].js",
   },
+  devServer: {
+    proxy: {
+      '/api': 'https://todo-reactdjango-app.herokuapp.com',
+    },
+  },
   module: {
     rules: [
       {
