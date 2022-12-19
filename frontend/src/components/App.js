@@ -16,6 +16,8 @@ export function App(){
     const [token, setToken] = useState("")
     const [newTitle, setNewTitle] = useState("")
 
+    const baseUrl = "https://todo-reactdjango-app.herokuapp.com"
+
     const dateRef = useRef()
     const usernameLoginRef = useRef()
     const passwordLoginRef = useRef()
@@ -31,7 +33,7 @@ export function App(){
                 "Authorization": "Bearer "+localStorage.getItem("token")
             }
         }
-        fetch(`/api/user_tasks/?id=${localStorage.getItem("currentUserId")}`, requestOptions)
+        fetch(baseUrl+`/api/user_tasks/?id=${localStorage.getItem("currentUserId")}`, requestOptions)
             .then(response => response.json())
             .then(data => setItems(data))
     }
@@ -61,7 +63,7 @@ export function App(){
                 password: passwordLoginRef.current.value
             })
         }
-        fetch("https://todo-reactdjango-app.herokuapp.com/api/custom_token/obtain/", requestOptions)
+        fetch(baseUrl+"/api/custom_token/obtain/", requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data["detail"]){
@@ -89,7 +91,7 @@ export function App(){
                 owner: localStorage.getItem("currentUserId")
             })
         }
-        fetch("/api/task/", requestOptions)
+        fetch(baseUrl+"/api/task/", requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data["detail"]){
@@ -109,7 +111,7 @@ export function App(){
             }
         }
         setItems(items.filter(item => item.id !== id))
-        fetch(`/api/task/${id}/`, requestOptions)
+        fetch(baseUrl+`/api/task/${id}/`, requestOptions)
             .then(response => {
                 let newTasks = [...items].filter(item => item.pk !== id)
                 setItems(newTasks)
@@ -125,7 +127,7 @@ export function App(){
                 "Authorization": "Bearer "+localStorage.getItem("token")
             }
         }
-        fetch(`/api/get_completed/?id=${localStorage.getItem("currentUserId")}`, requestOptions)
+        fetch(baseUrl+`/api/get_completed/?id=${localStorage.getItem("currentUserId")}`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 setItems(data)
@@ -141,7 +143,7 @@ export function App(){
                 "Authorization": "Bearer "+localStorage.getItem("token")
             }
         }
-        fetch(`/api/missed_deadline/?id=${localStorage.getItem("currentUserId")}`, requestOptions)
+        fetch(baseUrl+`/api/missed_deadline/?id=${localStorage.getItem("currentUserId")}`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(items)
@@ -177,7 +179,7 @@ export function App(){
             }
         })
 
-        fetch(`/api/change_is_done/?id=${id}&checked=${boolean}`, requestOptions)
+        fetch(baseUrl+`/api/change_is_done/?id=${id}&checked=${boolean}`, requestOptions)
     }
 
     function changeTitle(id){
@@ -188,7 +190,7 @@ export function App(){
                 "Authorization": "Bearer "+token
             }
         }
-        fetch(`/api/change_title/?task_id=${id}&new_title=${newTitle}`, requestOptions)
+        fetch(baseUrl+`/api/change_title/?task_id=${id}&new_title=${newTitle}`, requestOptions)
         items.find(item => {
             if (item.pk === id){
                 item.title = newTitle
