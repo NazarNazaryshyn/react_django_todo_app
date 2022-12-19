@@ -59,7 +59,7 @@ export function App(){
                 password: passwordLoginRef.current.value
             })
         }
-        fetch("/api/custom_token/obtain/", requestOptions)
+        fetch("https://todo-reactdjango-app.herokuapp.com:5000/api/custom_token/obtain/", requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data["detail"]){
