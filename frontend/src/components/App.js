@@ -2,6 +2,8 @@ import React from "react";
 import { render } from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
 import 'bootstrap/dist/js/bootstrap.js'
+import axios  from "axios"
+
 
 import { useState, useRef } from "react"
 
@@ -48,18 +50,10 @@ export function App(){
     }
 
     function login(){
-        const requestOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-                "Access-Control-Allow-Origin": "*"
-            },
-            body: JSON.stringify({
-                username: usernameLoginRef.current.value,
-                password: passwordLoginRef.current.value
-            })
-        }
-        fetch("https://todo-reactdjango-app.herokuapp.com:5000/api/custom_token/obtain/", requestOptions)
+        axios.post("https://todo-reactdjango-app.herokuapp.com/api/custom_token/obtain/",
+            {username: usernameLoginRef.current.value, password: passwordLoginRef.current.value},
+            {headers: {"Content-Type": "application/x-www-form-urlencoded", "Access-Control-Allow-Origin": "*"}}
+            )
             .then(response => response.json())
             .then(data => {
                 if (data["detail"]){
@@ -71,6 +65,30 @@ export function App(){
                     loadUserTasks()
                 }
             })
+
+        // const requestOptions = {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/x-www-form-urlencoded",
+        //         "Access-Control-Allow-Origin": "*"
+        //     },
+        //     body: JSON.stringify({
+        //         username: usernameLoginRef.current.value,
+        //         password: passwordLoginRef.current.value
+        //     })
+        // }
+        // fetch("https://todo-reactdjango-app.herokuapp.com/api/custom_token/obtain/", requestOptions)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         if (data["detail"]){
+        //             setToken("")
+        //         }else {
+        //             setToken(data["access"])
+        //             localStorage.setItem("currentUserId", data["id"])
+        //             localStorage.setItem("token", data["access"])
+        //             loadUserTasks()
+        //         }
+        //     })
     }
 
     function addTask(){
