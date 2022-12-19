@@ -9,7 +9,7 @@ module.exports = {
   },
   devServer: {
     proxy: {
-      '/api': 'https://todo-reactdjango-app.herokuapp.com',
+      '/api': 'https://todo-reactdjango-app.herokuapp.com:5000',
     },
   },
   module: {
