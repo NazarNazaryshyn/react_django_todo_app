@@ -52,8 +52,7 @@ export function App(){
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-                "Host": "todo-reactdjango-app.herokuapp.com"
+                "Access-Control-Allow-Origin": "*"
             },
             body: JSON.stringify({
                 username: usernameLoginRef.current.value,
